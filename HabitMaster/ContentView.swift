@@ -23,42 +23,63 @@ struct ContentView: View {
                     .foregroundColor(.accentText)
                     .padding(.vertical)
                 Spacer()
-                ScrollView {
-                    LazyVGrid(columns: columns) {
-                        ForEach(habitManager.habits) {habit in
-                            NavigationLink {
-                                HabitDetailsView()
-                            } label: {
-                                VStack {
-                                    
-                                    Text(habit.title)
-                                        .font(.title2.weight(.bold))
-                                        .foregroundColor(.white)
-                                        .padding(.bottom, 5)
+                ZStack {
+                    ScrollView {
+                        LazyVGrid(columns: columns) {
+                            ForEach(habitManager.habits) {habit in
+                                NavigationLink {
+                                    HabitDetailsView()
+                                } label: {
+                                    VStack {
 
-                                    Text(habit.description)
-                                        .font(.body.weight(.medium))
-                                        .foregroundColor(.accentText.opacity(0.8))
+                                        Text(habit.title)
+                                            .font(.title2.weight(.bold))
+                                            .foregroundColor(.white)
+                                            .padding(.bottom, 5)
 
-                                    Spacer()
+                                        Text(habit.description)
+                                            .font(.body.weight(.medium))
+                                            .foregroundColor(.accentText.opacity(0.8))
 
-                                    Text("\(habit.completionCount)/\(habit.completionGoal) done")
-                                        .foregroundColor(.white)
+                                        Spacer()
+
+                                        Text("\(habit.completionCount)/\(habit.completionGoal) done")
+                                            .foregroundColor(.white)
+                                    }
+                                    .padding()
+                                    .frame(maxWidth: .infinity, minHeight: 210)
+                                    .background(.cardBackground)
                                 }
-                                .padding()
-                                .frame(maxWidth: .infinity, minHeight: 210)
-                                .background(.cardBackground)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .shadow(color: .accentText, radius: 2)
                             }
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .shadow(color: .accentText, radius: 2)
+                            .padding(.all, 3)
                         }
-                        .padding(.all, 3)
+                        .padding()
                     }
-                    .padding()
+                    .background(.accentBackground)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .ignoresSafeArea()
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer() // This will push the "+" button to the right
+                            Button(action: {
+                                // Action to add a new habit
+                                // For now, we just print a log
+                                print("Add a new habit")
+                            }) {
+                                Image(systemName: "plus.circle.fill")
+                                    .font(.largeTitle)
+                                    .foregroundColor(.white.opacity(0.9))
+                                    .padding(16)
+                            }
+                            Spacer()
+                        }
+                        .background(.accentText)
+                        .frame(maxWidth: .infinity, maxHeight: 20)
+                    }
                 }
-                .background(.accentBackground)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .ignoresSafeArea()
             }
             .navigationTitle("Habit Master")
             .navigationBarHidden(true)
