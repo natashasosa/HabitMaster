@@ -13,5 +13,5 @@ struct Habit: Codable, Identifiable {
     let description: String
     var completionGoal: Int
     var completionCount: Int = 0
-    var journalComment: String = ""
+    // var journalComment: String = "" a definir se será utilizado
 }

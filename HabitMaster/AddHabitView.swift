@@ -16,16 +16,38 @@ struct AddHabitView: View {
 
     var body: some View {
         NavigationView {
-            Form {
-                    TextField("Title", text: $title)
-                    TextField("Description", text: $description)
-                    TextField("Completion Goal", value: $completionGoal, formatter: NumberFormatter())
-            }
-            .navigationBarItems(trailing:
-                Button("Add") {
-                    completionHandler?(title, description, completionGoal)
+            VStack {
+                Text("New Habit")
+                    .font(.largeTitle.weight(.bold))
+                    .foregroundColor(.accentText)
+
+                Form {
+                    Section(header: Text("TITLE")){
+                        TextField("Title", text: $title)
+                    }
+                    
+                    Section(header: Text("BRIEF DESCRIPTION")){
+                        TextField("Description", text: $description)
+                    }
+                    
+                    Section(header: Text("COMPLETION GOAL (IN DAYS)")){
+                        TextField("Completion Goal", value: $completionGoal, formatter: NumberFormatter())
+                    }
                 }
-            )
+                .onAppear {
+                    UITableView.appearance().backgroundColor = .clear
+                }
+                .foregroundColor(.accentText)
+                .background(.accentBackground)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .ignoresSafeArea()
+                .navigationBarItems(trailing:
+                    Button("Add") {
+                        completionHandler?(title, description, completionGoal)
+                    }
+                    .foregroundColor(.accentText)
+                )
+            }
         }
     }
 }
