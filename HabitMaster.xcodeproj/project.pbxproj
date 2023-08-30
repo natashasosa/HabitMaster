@@ -15,6 +15,7 @@
 		B793F4C92A97C026001AFF07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B793F4C82A97C026001AFF07 /* ContentView.swift */; };
 		B793F4CB2A97C027001AFF07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B793F4CA2A97C027001AFF07 /* Assets.xcassets */; };
 		B793F4CE2A97C027001AFF07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B793F4CD2A97C027001AFF07 /* Preview Assets.xcassets */; };
+		B7C9E44C2A9FAAEC00C3D651 /* AddHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C9E44B2A9FAAEC00C3D651 /* AddHabitView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		B793F4C82A97C026001AFF07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B793F4CA2A97C027001AFF07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B793F4CD2A97C027001AFF07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B7C9E44B2A9FAAEC00C3D651 /* AddHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				B7378CEB2A9E56BD00FC7608 /* HabitDetailsView.swift */,
 				B7378CE92A9E375300FC7608 /* Habit.swift */,
 				B7378CED2A9E59C800FC7608 /* HabitManager.swift */,
+				B7C9E44B2A9FAAEC00C3D651 /* AddHabitView.swift */,
 				B7378CE72A9E33D700FC7608 /* ColorTheme.swift */,
 				B793F4CA2A97C027001AFF07 /* Assets.xcassets */,
 				B793F4CC2A97C027001AFF07 /* Preview Content */,
@@ -151,6 +154,7 @@
 			files = (
 				B7378CEE2A9E59C800FC7608 /* HabitManager.swift in Sources */,
 				B7378CE82A9E33D700FC7608 /* ColorTheme.swift in Sources */,
+				B7C9E44C2A9FAAEC00C3D651 /* AddHabitView.swift in Sources */,
 				B7378CEC2A9E56BD00FC7608 /* HabitDetailsView.swift in Sources */,
 				B793F4C92A97C026001AFF07 /* ContentView.swift in Sources */,
 				B7378CEA2A9E375300FC7608 /* Habit.swift in Sources */,

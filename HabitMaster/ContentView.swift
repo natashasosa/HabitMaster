@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var habitManager = HabitManager()
+    @State var showingForm = false
 
     let columns = [
         GridItem(.adaptive(minimum: 150))
@@ -60,20 +61,27 @@ struct ContentView: View {
                     .background(.accentBackground)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .ignoresSafeArea()
+
                     VStack {
                         Spacer()
                         HStack {
                             Spacer() // This will push the "+" button to the right
                             Button(action: {
-                                // Action to add a new habit
-                                // For now, we just print a log
-                                print("Add a new habit")
+                                showingForm = true
                             }) {
                                 Image(systemName: "plus.circle.fill")
                                     .font(.largeTitle)
                                     .foregroundColor(.white.opacity(0.9))
                                     .padding(16)
                             }
+                            .sheet(isPresented: $showingForm) { //chatWT
+                                AddHabitView() { title, description, goal in
+                                    let newHabit = Habit(title: title, description: description, completionGoal: goal)
+                                    habitManager.habits.insert(newHabit, at: 0)
+                                    showingForm = false
+                                }
+                            }
+
                             Spacer()
                         }
                         .background(.accentText)
