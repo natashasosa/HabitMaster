@@ -9,21 +9,30 @@
 import SwiftUI
 
 struct HabitDetailsView: View {
+    var habit: Habit
     let title: String
     let description: String
-    var completionGoal: Int
-    @State var completionCount: Int
-
+    let completionGoal: Int
+    var completionCount: Int
     @State var isGoalDone = false
+
+    init(habit: Habit) {
+        self.habit = habit
+        self.title = habit.title
+        self.description = habit.description
+        self.completionGoal = habit.completionGoal
+        self.completionCount = habit.completionCount
+    }
+    
 
     var body: some View {
         NavigationView {
             VStack {
-                Text(title)
+                Text(habit.title)
                     .font(.largeTitle.weight(.bold))
                     .foregroundColor(.white)
                 HStack {
-                    Text(description)
+                    Text(habit.description)
 
                     Spacer()
                 }
@@ -35,7 +44,7 @@ struct HabitDetailsView: View {
                 .shadow(color: .accentText, radius: 2)
 
                 HStack {
-                    Text("\(completionCount)/\(completionGoal)")
+                    Text("\(habit.completionCount)/\(habit.completionGoal)")
                         .font(.title.weight(.bold))
                     Text("days completed.")
                     Spacer()
@@ -55,7 +64,8 @@ struct HabitDetailsView: View {
                         .foregroundColor(.white)
 
                     Button("I dit it!") {
-                        addCompletionCount()
+                        //checkIfDone()
+                        //habit.addCompletionCount()
                     }
                     .padding(.vertical, 10)
                     .padding(.horizontal, 35)
@@ -79,18 +89,19 @@ struct HabitDetailsView: View {
 
         }
     }
-    func addCompletionCount() {
-        if completionCount < completionGoal {
-            completionCount += 1
+    mutating func checkIfDone() {
+        if habit.completionCount < habit.completionGoal {
+            habit.completionCount += 1
         }
-        if completionCount == completionGoal {
+        if habit.completionCount == habit.completionGoal {
             isGoalDone = true
         }
+        print(habit)
     }
 }
 
 struct HabitDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        HabitDetailsView(title: "Habit Title", description: "Habit Description", completionGoal: 30, completionCount: 0)
+        HabitDetailsView(habit: Habit(title: "Sample Habit", description: "Sample Description", completionGoal: 10, completionCount: 5))
     }
 }

@@ -30,10 +30,9 @@ struct ContentView: View {
                         LazyVGrid(columns: columns) {
                             ForEach(habitManager.habits) {habit in
                                 NavigationLink {
-                                    HabitDetailsView(title: habit.title, description: habit.description, completionGoal: habit.completionGoal, completionCount: habit.completionCount)
+                                    HabitDetailsView(habit: habit)
                                 } label: {
                                     VStack {
-
                                         Text(habit.title)
                                             .font(.title2.weight(.bold))
                                             .foregroundColor(.white)
