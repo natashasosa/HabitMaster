@@ -37,7 +37,7 @@ class HabitManager: ObservableObject {
             }
         }
 
-        self.habits = [
+        habits = [
             Habit(title: "Drink water", description: "Drink 2L of water everyday for the next 30 days.", completionGoal: 30),
             Habit(title: "Work Out", description: "Do at least 20 minutes of exercise a day for the next 10 days", completionGoal: 10),
             Habit(title: "Read", description: "Read at least 10 pages of a book for the next 15 days", completionGoal: 15),
