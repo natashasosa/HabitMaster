@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AddHabitView: View {
+    @ObservedObject var habitManager: HabitManager
+    @Environment(\.dismiss) var dismiss
+
     @State var title = ""
     @State var description = ""
     @State var completionGoal = 0
@@ -41,12 +44,15 @@ struct AddHabitView: View {
                 .background(.accentBackground)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 .ignoresSafeArea()
-                .navigationBarItems(trailing:
+
+                .toolbar {
                     Button("Add") {
-                        completionHandler?(title, description, completionGoal)
+                        let habit = Habit(title: title, description: description, completionGoal: completionGoal)
+                        habitManager.habits.insert(habit, at: 0)
+                        dismiss()
                     }
                     .foregroundColor(.accentText)
-                )
+                }
             }
         }
     }
@@ -54,6 +60,6 @@ struct AddHabitView: View {
 
 struct AddHabitView_Previews: PreviewProvider {
     static var previews: some View {
-        AddHabitView()
+        AddHabitView(habitManager: HabitManager())
     }
 }

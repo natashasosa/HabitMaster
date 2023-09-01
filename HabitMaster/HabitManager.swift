@@ -22,8 +22,9 @@ class HabitManager: ObservableObject {
     @Published var habits: [Habit] {
         didSet {
             let encoder = JSONEncoder()
-            if let encodedHabits = try? encoder.encode(habits) {
-                UserDefaults.standard.set(encodedHabits, forKey: "Habits")
+
+            if let encoded = try? encoder.encode(habits) {
+                UserDefaults.standard.set(encoded, forKey: "Habits")
             }
         }
     }
@@ -31,8 +32,8 @@ class HabitManager: ObservableObject {
     init() {
         if let habitsData = UserDefaults.standard.data(forKey: "Habits") {
             let decoder = JSONDecoder()
-            if let decodedHabits = try? decoder.decode([Habit].self, from: habitsData) {
-                self.habits = decodedHabits
+            if let decoded = try? decoder.decode([Habit].self, from: habitsData) {
+                self.habits = decoded
                 return
             }
         }

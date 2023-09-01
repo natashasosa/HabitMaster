@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var habitManager = HabitManager()
+    @StateObject var habitManager = HabitManager()
     @State var showingForm = false
 
     let columns = [
@@ -76,7 +76,7 @@ struct ContentView: View {
                                     .padding(16)
                             }
                             .sheet(isPresented: $showingForm) { //chatWT
-                                AddHabitView() { title, description, goal in
+                                AddHabitView(habitManager: habitManager) { title, description, goal in
                                     let newHabit = Habit(title: title, description: description, completionGoal: goal)
                                     habitManager.habits.insert(newHabit, at: 0)
                                     showingForm = false
