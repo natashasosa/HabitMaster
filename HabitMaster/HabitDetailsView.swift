@@ -9,21 +9,8 @@
 import SwiftUI
 
 struct HabitDetailsView: View {
-    var habit: Habit
-    let title: String
-    let description: String
-    let completionGoal: Int
-    var completionCount: Int
+    @Binding var habit: Habit
     @State var isGoalDone = false
-
-    init(habit: Habit) {
-        self.habit = habit
-        self.title = habit.title
-        self.description = habit.description
-        self.completionGoal = habit.completionGoal
-        self.completionCount = habit.completionCount
-    }
-    
 
     var body: some View {
         NavigationView {
@@ -64,8 +51,7 @@ struct HabitDetailsView: View {
                         .foregroundColor(.white)
 
                     Button("I dit it!") {
-                        //checkIfDone()
-                        //habit.addCompletionCount()
+                        checkIfDone()
                     }
                     .padding(.vertical, 10)
                     .padding(.horizontal, 35)
@@ -89,19 +75,19 @@ struct HabitDetailsView: View {
 
         }
     }
-    mutating func checkIfDone() {
+
+    func checkIfDone() {
         if habit.completionCount < habit.completionGoal {
             habit.completionCount += 1
         }
         if habit.completionCount == habit.completionGoal {
             isGoalDone = true
         }
-        print(habit)
     }
 }
 
 struct HabitDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        HabitDetailsView(habit: Habit(title: "Sample Habit", description: "Sample Description", completionGoal: 10, completionCount: 5))
+        HabitDetailsView(habit: .constant(Habit(title: "Sample Habit", description: "Sample Description", completionGoal: 10, completionCount: 5)))
     }
 }

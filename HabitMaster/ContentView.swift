@@ -28,19 +28,21 @@ struct ContentView: View {
                 ZStack {
                     ScrollView {
                         LazyVGrid(columns: columns) {
-                            ForEach(habitManager.habits) {habit in
+                            ForEach($habitManager.habits) { $habit in
                                 NavigationLink {
-                                    HabitDetailsView(habit: habit)
+                                    HabitDetailsView(habit: $habit)
                                 } label: {
                                     VStack {
                                         Text(habit.title)
                                             .font(.title2.weight(.bold))
                                             .foregroundColor(.white)
                                             .padding(.bottom, 5)
+                                            .lineLimit(2)
 
                                         Text(habit.description)
                                             .font(.body.weight(.medium))
                                             .foregroundColor(.accentText.opacity(0.8))
+                                            .lineLimit(3)
 
                                         Spacer()
 

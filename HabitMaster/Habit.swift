@@ -13,10 +13,4 @@ struct Habit: Identifiable, Codable {
     let description: String
     var completionGoal: Int
     var completionCount: Int = 0
-
-    mutating func addCompletionCount() {
-        if completionCount < completionGoal {
-            completionCount += 1
-        }
-    }
 }
